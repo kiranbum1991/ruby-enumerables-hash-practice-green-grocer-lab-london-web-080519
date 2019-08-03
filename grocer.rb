@@ -1,8 +1,17 @@
 require 'pry'
 def consolidate_cart(cart)
   # code here
-  cart.each do |item, attributes|
-    binding.pry
+  hash = {}
+  cart.each do |item|
+    item.each do |name, price|
+      if hash[name].nil?
+        hash[name] = price.merge({:count => 1})
+      else 
+        hash[name][:count] += 1
+    end
+  end
+end
+hash
 end
 
 def apply_coupons(cart, coupons)
